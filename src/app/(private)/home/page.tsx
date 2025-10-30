@@ -7,7 +7,7 @@ export default function Home() {
 		<PageLayout>
 			<section>
 				<div className="flex flex-col gap-3 md:gap-0">
-					<TitlePage title="GestObra" textButton="Adicionar Viagem" />
+					<TitlePage title="GestOk" textButton="Carregar Arquivo" />
 					<div className="flex flex-col items-start text-xl mb-4">
 						<div className="flex gap-2">
 							<span>

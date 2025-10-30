@@ -36,7 +36,9 @@ npm i http-status-codes
 <!-- npx shadcn add toast -->
 npx shadcn@latest add sidebar
 npm install @tanstack/react-table
-
+npm install @radix-ui/react-dropdown-menu
+npm i jotai
+npm i nuqs
 
 ## Learn More
 

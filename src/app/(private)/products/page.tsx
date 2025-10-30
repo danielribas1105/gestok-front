@@ -1,14 +1,18 @@
 import PageLayout from "@/components/ui/page-layout"
 import TitlePage from "@/components/ui/title-page"
-/* import ListUsers from "@/components/user/list-users" */
+/* import ListCars from "@/components/car/list-cars" */
 
-export default function UsersPage() {
+export default function ProductsPage() {
 	return (
 		<PageLayout>
 			<section className="flex flex-col gap-7">
-				<TitlePage title="Usuários" placeholder="Procure pelo nome" textButton="Adicionar Usuário" />
+				<TitlePage
+					title="Produtos"
+					placeholder="Procure pelo nome"
+					textButton="Adicionar Produto"
+				/>
 				<div className="flex justify-center">
-					{/* <ListUsers /> */}
+					{/* <ListCars /> */}
 				</div>
 			</section>
 		</PageLayout>
