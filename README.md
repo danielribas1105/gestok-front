@@ -20,6 +20,24 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Dependencies to install
+
+npm i prettier
+npm i @tabler/icons-react
+npm i zod
+npm i uuid
+npx shadcn@latest add form
+npx shadcn@latest add input
+npx shadcn@latest add alert
+npm i @tanstack/react-query
+npm i --save-dev @types/js-cookie
+npm i date-fns
+npm i http-status-codes
+<!-- npx shadcn add toast -->
+npx shadcn@latest add sidebar
+npm install @tanstack/react-table
+
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
