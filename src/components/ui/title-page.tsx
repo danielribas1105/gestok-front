@@ -8,9 +8,10 @@ interface TitlePageProps {
 	className?: string
 	placeholder?: string
 	textButton?: string
+	onButtonClick?: () => void
 }
 
-export default function TitlePage({ title, className, placeholder, textButton }: TitlePageProps) {
+export default function TitlePage({ title, className, placeholder, textButton, onButtonClick }: TitlePageProps) {
 	
 	return (
 		<div
@@ -21,7 +22,7 @@ export default function TitlePage({ title, className, placeholder, textButton }:
 			</div>
 			{placeholder && <Search className="flex-1" placeholder={placeholder} />}
 			{textButton && (
-				<Button className="flex gap-2">
+				<Button className="flex gap-2" onClick={onButtonClick}>
 					<IconPlus />
 					<span>{textButton}</span>
 				</Button>
