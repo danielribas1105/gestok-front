@@ -7,7 +7,7 @@ import { createUser } from "@/lib/api"
 import { Button } from "@/components/ui/button"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { toast } from "@/hooks/use-toast"
+import { toast } from "sonner"
 
 const userSchema = z.object({
 	name: z.string().min(3, "Nome deve ter pelo menos 3 caracteres"),
@@ -38,14 +38,12 @@ export function UserForm({ onSuccess }: UserFormProps) {
 	const onSubmit = async (data: UserFormValues) => {
 		try {
 			await createUser(data)
-			toast({ title: "Usuário criado com sucesso!" })
+			toast("Usuário criado com sucesso!")
 			form.reset() // ✅ limpa os campos
 			onSuccess?.() // ✅ fecha o modal
 			//router.push("/users")
 		} catch (err: any) {
-			toast({
-				variant: "destructive",
-				title: "Erro ao cadastrar",
+			toast("Erro ao cadastrar", {
 				description: err.message || "Falha inesperada",
 			})
 		}
