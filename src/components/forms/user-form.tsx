@@ -38,12 +38,12 @@ export function UserForm({ onSuccess }: UserFormProps) {
 	const onSubmit = async (data: UserFormValues) => {
 		try {
 			await createUser(data)
-			toast("Usuário criado com sucesso!")
+			toast.success("Usuário criado com sucesso!")
 			form.reset() // ✅ limpa os campos
 			onSuccess?.() // ✅ fecha o modal
 			//router.push("/users")
 		} catch (err: any) {
-			toast("Erro ao cadastrar", {
+			toast.error("Erro ao cadastrar usuário", {
 				description: err.message || "Falha inesperada",
 			})
 		}
