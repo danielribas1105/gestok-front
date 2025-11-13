@@ -8,15 +8,13 @@ import { addSeconds } from "date-fns"
 import { StatusCodes } from "http-status-codes"
 import Cookies from "js-cookie"
 import { useRouter } from "next/navigation"
-/* import { useToast } from "../use-toast" */
+import { toast } from "sonner"
 
 export const useLogin = () => {
 	const router = useRouter()
-	/* const { toast } = useToast()
- */
+
 	const fetchTokens = async ({ body }: { body: { username: string; password: string } }) => {
-		console.log("fetchTokens", body.username)
-		console.log("fetchTokens", body.password)
+		
 		return await fetchBackend
 			.unauthPostForm<LoginResponse>(apiRoutes.auth.login, body, {
 				ignoreAuthError: true,
@@ -43,11 +41,9 @@ export const useLogin = () => {
 					throw new Error("Invalid credentials")
 				}
 
-				/* toast({
-					title: "Alguma coisa deu errado!",
+				toast.error("Alguma coisa deu errado!", {
 					description: "Por favor, tente novamente.",
-					variant: "default",
-				}) */
+				})
 
 				throw new Error()
 			})

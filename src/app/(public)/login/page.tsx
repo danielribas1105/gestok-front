@@ -1,4 +1,5 @@
 //import { LoginForm } from "@/components/login/login-form"
+import { LoginForm } from "@/components/login/login-form"
 import { IconBuildingWarehouse } from "@tabler/icons-react"
 import Image from "next/image"
 
@@ -12,7 +13,7 @@ export default function LoginPage() {
 					<h1 className="text-3xl text-logo-blue-dark font-logo font-bold">GestOk</h1>
 				</div>
 				<div className="flex flex-1 justify-center">
-					{/* <LoginForm /> */}Login Forms
+					<LoginForm />
 				</div>
 			</div>
 			<div className="relative hidden bg-muted lg:block">

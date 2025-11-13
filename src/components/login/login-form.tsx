@@ -54,9 +54,9 @@ export const LoginForm = ({ className, ...props }: React.ComponentPropsWithoutRe
 						Digite seu e-mail para acessar sua conta
 					</p>
 					{error /* && error.message */ && (
-						<Alert variant="destructive" className="text-start">
+						<Alert variant="destructive" className="flex items-center text-start">
 							<IconAlertSquareRounded className="h-4 w-4" />
-							<AlertTitle className="mt-1">Error message</AlertTitle>
+							<AlertTitle className="mt-1">Error login</AlertTitle>
 							<AlertDescription>{error.message}</AlertDescription>
 						</Alert>
 					)}
@@ -95,7 +95,7 @@ export const LoginForm = ({ className, ...props }: React.ComponentPropsWithoutRe
 					/>
 					<Button
 						type="submit"
-						className="w-full bg-logo-blue-dark hover:bg-blue-900"
+						className="w-full bg-logo-blue-dark bg-blue-700 hover:bg-blue-900"
 						disabled={isPending}
 					>
 						{/* {isPending && <Spinner />} */}

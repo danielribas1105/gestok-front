@@ -25,7 +25,7 @@ export default function Home() {
 		async function fetchStatus() {
 			try {
 				setStatus((prev) => ({ ...prev, status: "checking" }))
-				const res = await fetch("http://localhost:8000/api/status")
+				const res = await fetch("http://localhost:8000/status")
 				const data = await res.json()
 				setStatus({
 					status: data.status === "online" ? "online" : "offline",
