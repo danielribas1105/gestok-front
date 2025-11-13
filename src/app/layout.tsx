@@ -29,7 +29,7 @@ export default function RootLayout({
 		<GlobalProviders>
 			<html lang="pt-BR">
 				<body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-					<Toaster />
+					<Toaster richColors/>
 					<QueryProvider>{children}</QueryProvider>
 				</body>
 			</html>

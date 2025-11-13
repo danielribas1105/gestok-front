@@ -1,8 +1,8 @@
 import { apiRoutes, QUERY_KEYS } from "@/config/routes"
 import { fetchBackend } from "@/functions/fetch-backend"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
-/* import { toast } from "@/hooks/use-toast" */
 import { UserLogin } from "@/types/api/auth"
+import { toast } from "sonner"
 
 export const useCurrentUser = () => {
 	const { data: user, ...userQuery } = useQuery({
@@ -55,11 +55,9 @@ export const useUpdateUser = () => {
 
 		onError: (e: any) => {
 			// Exibindo erro com toast
-			/* toast({
-				title: "Error updating",
+			toast.error("Error updating", {
 				description: (e as Error).message || "Something went wrong while trying to update the user.",
-				variant: "destructive",
-			}) */
+			})
 		},
 		onSuccess: async () => {
 			await client.refetchQueries({
@@ -67,11 +65,9 @@ export const useUpdateUser = () => {
 				exact: false,
 			})
 
-			/* toast({
-				title: "Success",
+			toast.success("Success", {
 				description: "The user has been successfully updated.",
-				variant: "default",
-			}) */
+			})
 		},
 	})
 
@@ -114,18 +110,14 @@ export const useChangePassword = () => {
 		}) => changePassword(passwordUpdateData),
 		mutationKey: ["changePassword"],
 		onError: (e: any) => {
-			/* toast({
-				title: "Error updating",
+			toast.error("Error updating", {
 				description: (e as Error).message || "Something went wrong while trying to update the user.",
-				variant: "destructive",
-			}) */
+			})
 		},
 		onSuccess: async (userData) => {
-			/* toast({
-				title: "Success!",
+			toast.success("Success!", {
 				description: "The user has been successfully updated.",
-				variant: "default",
-			}) */
+			})
 			await client.invalidateQueries({ queryKey: ["user"] })
 		},
 	})

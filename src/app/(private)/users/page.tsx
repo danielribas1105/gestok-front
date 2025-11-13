@@ -2,8 +2,8 @@
 import PageLayout from "@/components/ui/page-layout"
 import TitlePage from "@/components/ui/title-page"
 import { AddUserModal } from "@/components/user/add-user-modal"
+import ListUsers from "@/components/user/list-users"
 import { useState } from "react"
-/* import ListUsers from "@/components/user/list-users" */
 
 export default function UsersPage() {
 	const [open, setOpen] = useState(false)
@@ -26,7 +26,7 @@ export default function UsersPage() {
 
 				{/* Tabela de usuários (futuro) */}
 				<div className="flex justify-center">
-					{/* <ListUsers /> */}
+					<ListUsers />
 				</div>
 			</section>
 		</PageLayout>

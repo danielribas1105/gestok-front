@@ -2,6 +2,7 @@
 import { LoginForm } from "@/components/login/login-form"
 import { IconBuildingWarehouse } from "@tabler/icons-react"
 import Image from "next/image"
+import stockImg from "@/../public/images/gestao-estoque.jpg"
 
 export default function LoginPage() {
 
@@ -18,8 +19,8 @@ export default function LoginPage() {
 			</div>
 			<div className="relative hidden bg-muted lg:block">
 				<Image
-					src=""
-					alt="Image"
+					src={stockImg}
+					alt="Imagem de um galpão para estoque"
 					className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
 					width={1024}
 					height={1024}

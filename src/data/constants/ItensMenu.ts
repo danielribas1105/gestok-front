@@ -1,5 +1,5 @@
 import { IconBlocks, IconChecklist, IconCookie, IconForklift, IconLogout } from "@tabler/icons-react"
-import { Construction, FileText, Home, Truck, UserCircle2 } from "lucide-react"
+import { Construction, FileText, Home, Truck, UserCircle2, UserStar } from "lucide-react"
 
 // Menu web application
 export const itemsMenu = [
@@ -10,13 +10,18 @@ export const itemsMenu = [
 	},
 	{
 		title: "Estoque",
-		url: "/estoque",
+		url: "/stock",
 		icon: IconBlocks,
 	},
 	{
 		title: "Produtos",
-		url: "/produtos",
+		url: "/products",
 		icon: IconCookie,
+	},
+	{
+		title: "Clientes",
+		url: "/clients",
+		icon: UserStar,
 	},
 	{
 		title: "Usuários",
