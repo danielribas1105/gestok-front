@@ -1,9 +1,9 @@
 "use client"
 import { AddProductModal } from "@/components/product/app-product-modal"
+import ListProducts from "@/components/product/list-products"
 import PageLayout from "@/components/ui/page-layout"
 import TitlePage from "@/components/ui/title-page"
 import { useState } from "react"
-/* import ListCars from "@/components/car/list-cars" */
 
 export default function ProductsPage() {
 	const [open, setOpen] = useState(false)
@@ -22,7 +22,7 @@ export default function ProductsPage() {
 					<AddProductModal open={open} onOpenChange={setOpen} />
 				</div>
 				<div className="flex justify-center">
-					{/* <ListCars /> */}
+					<ListProducts/>
 				</div>
 			</section>
 		</PageLayout>

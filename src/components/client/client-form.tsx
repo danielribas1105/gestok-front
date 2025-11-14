@@ -1,13 +1,13 @@
 "use client"
-import { useRouter } from "next/navigation"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { createClient } from "@/lib/api"
 import { Button } from "@/components/ui/button"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { create } from "@/lib/api"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useRouter } from "next/navigation"
+import { useForm } from "react-hook-form"
 import { toast } from "sonner"
+import { z } from "zod"
 
 const clientSchema = z.object({
 	cod_client: z.string().min(3, "Código deve ter pelo menos 3 caracteres"),
@@ -35,7 +35,7 @@ export function ClientForm({ onSuccess }: ClientFormProps) {
 
 	const onSubmit = async (data: ClientFormValues) => {
 		try {
-			await createClient(data)
+			await create(data, "clients")
 			toast.success("Cliente criado com sucesso!")
 			form.reset() // ✅ limpa os campos
 			onSuccess?.() // ✅ fecha o modal

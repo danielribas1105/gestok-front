@@ -1,13 +1,13 @@
 "use client"
-import { useRouter } from "next/navigation"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { createUser } from "@/lib/api"
 import { Button } from "@/components/ui/button"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { create } from "@/lib/api"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useRouter } from "next/navigation"
+import { useForm } from "react-hook-form"
 import { toast } from "sonner"
+import { z } from "zod"
 
 const userSchema = z.object({
 	name: z.string().min(3, "Nome deve ter pelo menos 3 caracteres"),
@@ -37,7 +37,7 @@ export function UserForm({ onSuccess }: UserFormProps) {
 
 	const onSubmit = async (data: UserFormValues) => {
 		try {
-			await createUser(data)
+			await create(data, "users")
 			toast.success("Usuário criado com sucesso!")
 			form.reset() // ✅ limpa os campos
 			onSuccess?.() // ✅ fecha o modal

@@ -1,13 +1,13 @@
 "use client"
-import { useRouter } from "next/navigation"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { createProduct } from "@/lib/api"
 import { Button } from "@/components/ui/button"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { create } from "@/lib/api"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useRouter } from "next/navigation"
+import { useForm } from "react-hook-form"
 import { toast } from "sonner"
+import { z } from "zod"
 
 const productSchema = z.object({
 	cod_product: z.string().min(4, "Código deve ter pelo menos 4 caracteres"),
@@ -58,7 +58,7 @@ export function ProductForm({ onSuccess }: ProductFormProps) {
 
 	const onSubmit = async (data: ProductFormValues) => {
 		try {
-			await createProduct(data)
+			await create(data, "products")
 			toast.success("Produto criado com sucesso!")
 			form.reset()
 			onSuccess?.()
