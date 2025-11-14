@@ -1,8 +1,13 @@
+"use client"
+import { AddProductModal } from "@/components/product/app-product-modal"
 import PageLayout from "@/components/ui/page-layout"
 import TitlePage from "@/components/ui/title-page"
+import { useState } from "react"
 /* import ListCars from "@/components/car/list-cars" */
 
 export default function ProductsPage() {
+	const [open, setOpen] = useState(false)
+	
 	return (
 		<PageLayout>
 			<section className="flex flex-col gap-7">
@@ -10,7 +15,12 @@ export default function ProductsPage() {
 					title="Produtos"
 					placeholder="Procure pelo nome"
 					textButton="Adicionar Produto"
+					onButtonClick={() => setOpen(true)}
 				/>
+				{/* Modal de adicionar produto */}
+				<div className="flex justify-end">
+					<AddProductModal open={open} onOpenChange={setOpen} />
+				</div>
 				<div className="flex justify-center">
 					{/* <ListCars /> */}
 				</div>

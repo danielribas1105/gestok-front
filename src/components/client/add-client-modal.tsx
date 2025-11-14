@@ -1,20 +1,20 @@
 "use client"
-import { UserForm } from "@/components/user/user-form"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import { ClientForm } from "./client-form"
 
-interface AddUserModalProps {
+interface AddClientModalProps {
 	open?: boolean
 	onOpenChange: (open: boolean) => void
 }
 
-export function AddUserModal({ open, onOpenChange }: AddUserModalProps) {
+export function AddClientModal({ open, onOpenChange }: AddClientModalProps) {
 	return (
 		<Dialog open={open} onOpenChange={onOpenChange}>
 			<DialogContent className="max-w-lg p-6">
 				<DialogHeader>
-					<DialogTitle>Novo Usuário</DialogTitle>
+					<DialogTitle>Novo Cliente</DialogTitle>
 				</DialogHeader>
-				<UserForm onSuccess={() => onOpenChange(false)} />
+				<ClientForm onSuccess={() => onOpenChange(false)} />
 			</DialogContent>
 		</Dialog>
 	)
