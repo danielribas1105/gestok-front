@@ -10,11 +10,16 @@ import {
 	SidebarMenuButton,
 	SidebarMenuItem
 } from "@/components/ui/sidebar"
-import { IconBuildingWarehouse } from "@tabler/icons-react"
+import { IconBuildingWarehouse, IconLogout } from "@tabler/icons-react"
 import Footer from "./footer"
+import { useLogout } from "@/hooks/auth/use-login"
+import { LogOut } from "lucide-react"
 
 
 export function AppSidebar() {
+
+	const { logout } = useLogout()
+
 	return (
 		<Sidebar>
 			<SidebarHeader>
@@ -41,6 +46,12 @@ export function AppSidebar() {
 									</SidebarMenuButton>
 								</SidebarMenuItem>
 							))}
+							<SidebarMenuItem>
+								<SidebarMenuButton className="flex gap-2" onClick={logout}>
+									<IconLogout color="#51a41e"/>
+									Logout
+								</SidebarMenuButton>
+							</SidebarMenuItem>
 						</SidebarMenu>
 					</SidebarGroupContent>
 				</SidebarGroup>

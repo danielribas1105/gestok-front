@@ -8,10 +8,10 @@ export default function LoginPage() {
 
 	return (
 		<div className="grid min-h-svh lg:grid-cols-2">
-			<div className="flex flex-col gap-6 py-4">
+			<div className="flex flex-col gap-6 py-4 mt-10">
 				<div className="flex flex-col gap-2 items-center">
-					<IconBuildingWarehouse size={20} color="#0030cc"/>
-					<h1 className="text-3xl text-logo-blue-dark font-logo font-bold">GestOk</h1>
+					<IconBuildingWarehouse size={100} stroke={1} color="#0030cc"/>
+					<h1 className="text-4xl text-logo-blue-dark font-logo font-bold">GestOk</h1>
 				</div>
 				<div className="flex flex-1 justify-center">
 					<LoginForm />
