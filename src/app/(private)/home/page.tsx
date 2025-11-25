@@ -3,6 +3,7 @@ import CSVDataTable from "@/components/csv-data-table"
 import PageLayout from "@/components/ui/page-layout"
 import TitlePage from "@/components/ui/title-page"
 import { UploadFileModal } from "@/components/upload-file-modal"
+import { useOrders } from "@/hooks/order/use-orders"
 import { CheckCircle, Circle, Loader2, XCircle } from "lucide-react"
 import { useEffect, useState } from "react"
 
@@ -16,10 +17,13 @@ export default function Home() {
 		status: "checking",
 		timestamp: "",
 	})
+	const { orders } = useOrders()
 	const [tableData, setTableData] = useState<{ data: any[]; columns: string[] }>({
 		data: [],
 		columns: [],
 	})
+
+	console.log("orders",orders)
 
 	useEffect(() => {
 		async function fetchStatus() {

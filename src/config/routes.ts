@@ -15,17 +15,24 @@ export const apiRoutes = {
 		getAll: "/user",
 		change_password: "/change_password"
 	},
-	car: {
-		getAll: "/car",
-		getByID: (params: UUID) => `/car/${params}`,
+	client: {
+		getAll: "/client",
+		getByID: (params: UUID) => `/client/${params}`,
 	},
-	work: {
-		getAll: "/work",
-		getByID: (params: UUID) => `/work/${params}`,
+	product: {
+		getAll: "/product",
+		getByID: (params: UUID) => `/product/${params}`,
 	},
-	job: {
-		getAll: "/job",
-		getByID: (params: UUID) => `/job/${params}`,
+	orders: {
+		getAll: "/orders",
+		getById: (params: UUID) => `/orders/${params}`,
+		create: "/orders",
+		process: (id: string) => `/orders/${id}/process`,
+		cancel: (id: string) => `/orders/${id}/cancel`,
+	},
+	stock: {
+		getAll: "/stock",
+		getByID: (params: UUID) => `/stock/${params}`,
 	},
 }
 
@@ -42,7 +49,7 @@ export const QUERY_KEYS = Object.fromEntries(
 	]),
 ) as Record<ApiRoutesFirstLevel, Record<ApiRoutesSecondLevel, string[]>>
 
-export const privateRoutes = ["/users", "/works", "/cars", "/statements", "/reports"]
+export const privateRoutes = ["/users", "/clients", "/products", "/stock", "/reports"]
 
 export const defaultPrivateRoute = "/home"
 export const defaultPublicRoute = "/login"

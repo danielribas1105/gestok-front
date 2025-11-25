@@ -1,5 +1,5 @@
-import { IconBlocks, IconChecklist, IconCookie, IconForklift, IconLogout } from "@tabler/icons-react"
-import { Construction, FileText, Home, Truck, UserCircle2, UserStar } from "lucide-react"
+import { IconBlocks, IconCookie } from "@tabler/icons-react"
+import { FileText, Home, UserCircle2, UserStar } from "lucide-react"
 
 // Menu web application
 export const itemsMenu = [
