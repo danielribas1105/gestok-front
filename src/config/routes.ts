@@ -25,7 +25,7 @@ export const apiRoutes = {
 	},
 	orders: {
 		getAll: "/orders",
-		getById: (params: UUID) => `/orders/${params}`,
+		getById: (id: UUID) => `/orders/${id}`,
 		create: "/orders",
 		process: (id: string) => `/orders/${id}/process`,
 		cancel: (id: string) => `/orders/${id}/cancel`,

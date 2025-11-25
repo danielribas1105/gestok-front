@@ -7,7 +7,7 @@ import { toast } from "sonner"
 export interface Client {
    id: string
    cod_client: string
-   name: string
+   client: string
    cpf_cnpj?: string
    phone?: string
    email?: string
@@ -159,7 +159,7 @@ export interface TransformedOrder {
             return {
                id: order.id,
                cod_order: order.cod_order,
-               client_name: order.client?.name || "Cliente não encontrado",
+               client_name: order.client?.client || "Cliente não encontrado",
                client_code: order.client?.cod_client || "-",
                user_name: order.user?.name || "Usuário não encontrado",
                order_type: order.order_type,

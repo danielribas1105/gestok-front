@@ -93,6 +93,11 @@ export default function Home() {
 					</div>
 				</div>
 				{/* DataTable */}
+				<div className="flex flex-col gap-2">
+					{orders.map((order) => (
+						<p key={order.id}>{order.id}</p>
+					))}
+				</div>
 				{tableData.data.length > 0 && (
 					<div className="mt-6">
 						<CSVDataTable data={tableData.data} columns={tableData.columns} />

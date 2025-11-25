@@ -5,7 +5,6 @@ import UserCard from "./user-card"
 export default function ListUsers() {
 	const { users, isLoading, isError, error } = useUsers()
 
-	console.log("users",users)
 	if (isLoading) {
 		return (
 			<div className="flex items-center justify-center p-8">
