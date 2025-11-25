@@ -1,33 +1,42 @@
 "use client"
-import { User } from "@/schemas/user"
-import { useQuery } from "@tanstack/react-query"
+import { useUsers } from "@/hooks/user/use-users"
 import UserCard from "./user-card"
 
-async function fetchUsers(): Promise<User[]> {
-	const res = await fetch("http://localhost:8000/users")
-	if (!res.ok) throw new Error("Erro ao buscar usuários")
-
-   const data = await res.json()
-
-	return data.users
-}
-
 export default function ListUsers() {
-	const {
-		data: users,
-		isLoading,
-		error,
-	} = useQuery({
-		queryKey: ["users"],
-		queryFn: fetchUsers,
-	})
-   console.log("users",users)
-	if (isLoading) return <p>Carregando usuários...</p>
-	if (error) return <p>Erro ao carregar usuários</p>
+	const { users, isLoading, isError, error } = useUsers()
+
+	console.log("users",users)
+	if (isLoading) {
+		return (
+			<div className="flex items-center justify-center p-8">
+				<p className="text-muted-foreground">Carregando usuários...</p>
+			</div>
+		)
+	}
+
+	if (isError) {
+		return (
+			<div className="flex items-center justify-center p-8">
+				<p className="text-destructive">
+					{error instanceof Error ? error.message : "Erro ao carregar usuários"}
+				</p>
+			</div>
+		)
+	}
+
+	if (!users?.length) {
+		return (
+			<div className="flex items-center justify-center p-8">
+				<p className="text-muted-foreground">Nenhum usuário encontrado</p>
+			</div>
+		)
+	}
 
 	return (
 		<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-			{users && users.map((user: User) => <UserCard key={user.id} user={user} />)}
+			{users.map((user) => (
+				<UserCard key={user.id} user={user} />
+			))}
 		</div>
 	)
 }

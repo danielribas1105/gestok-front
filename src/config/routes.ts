@@ -11,8 +11,8 @@ export const apiRoutes = {
 	},
 	user: {
 		register: "/user/register",
-		me: "/user/me",
-		getAll: "/user",
+		me: "/users/me",
+		getAll: "/users",
 		change_password: "/change_password"
 	},
 	client: {
