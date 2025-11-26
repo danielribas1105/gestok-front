@@ -1,12 +1,12 @@
 import { IconBlocks, IconCookie } from "@tabler/icons-react"
-import { FileText, Home, UserCircle2, UserStar } from "lucide-react"
+import { FileText, Table, UserCircle2, UserStar } from "lucide-react"
 
 // Menu web application
 export const itemsMenu = [
 	{
-		title: "Home",
-		url: "/home",
-		icon: Home,
+		title: "Pedidos",
+		url: "/orders",
+		icon: Table,
 	},
 	{
 		title: "Estoque",

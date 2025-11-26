@@ -15,13 +15,10 @@ import { IconBuildingWarehouse, IconLogout } from "@tabler/icons-react"
 import Footer from "./footer"
 import { useCurrentUser } from "@/hooks/user/use-current-user"
 
-
 export function AppSidebar() {
-
 	const { logout } = useLogout()
 	const { user } = useCurrentUser()
 
-	console.log("user", user?.name)
 	return (
 		<Sidebar>
 			<SidebarHeader>

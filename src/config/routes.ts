@@ -16,12 +16,12 @@ export const apiRoutes = {
 		change_password: "/change_password"
 	},
 	client: {
-		getAll: "/client",
-		getByID: (params: UUID) => `/client/${params}`,
+		getAll: "/clients",
+		getByID: (params: UUID) => `/clients/${params}`,
 	},
 	product: {
-		getAll: "/product",
-		getByID: (params: UUID) => `/product/${params}`,
+		getAll: "/products",
+		getByID: (params: UUID) => `/products/${params}`,
 	},
 	orders: {
 		getAll: "/orders",
@@ -33,6 +33,10 @@ export const apiRoutes = {
 	stock: {
 		getAll: "/stock",
 		getByID: (params: UUID) => `/stock/${params}`,
+	},
+	inventory: {
+		getAll: "/inventory",
+		getByID: (params: UUID) => `/inventory/${params}`,
 	},
 }
 
@@ -51,5 +55,5 @@ export const QUERY_KEYS = Object.fromEntries(
 
 export const privateRoutes = ["/users", "/clients", "/products", "/stock", "/reports"]
 
-export const defaultPrivateRoute = "/home"
+export const defaultPrivateRoute = "/orders"
 export const defaultPublicRoute = "/login"

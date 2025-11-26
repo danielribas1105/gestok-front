@@ -6,7 +6,7 @@ export function middleware(request: NextRequest) {
 	const { pathname } = request.nextUrl
 
 	const isPublicPath = pathname.startsWith("/login")
-	const isPrivatePath = pathname.startsWith("/home")
+	const isPrivatePath = pathname.startsWith("/orders")
 
 	const token = request.cookies.get(getCookieName(COOKIE_NAMES.tokens.access))?.value
 
@@ -21,12 +21,12 @@ export function middleware(request: NextRequest) {
 
 	// Redireciona usuário autenticado que tenta acessar login
 	if (isPublicPath && token) {
-		return NextResponse.redirect(new URL("/home", request.url))
+		return NextResponse.redirect(new URL("/orders", request.url))
 	}
 
 	return NextResponse.next()
 }
 
 export const config = {
-	matcher: ["/", "/login", "/home/:path*"],
+	matcher: ["/", "/login", "/orders/:path*"],
 }

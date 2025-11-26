@@ -1,5 +1,5 @@
 "use client"
-import { AddProductModal } from "@/components/product/app-product-modal"
+import { AddProductModal } from "@/components/product/add-product-modal"
 import ListProducts from "@/components/product/list-products"
 import PageLayout from "@/components/ui/page-layout"
 import TitlePage from "@/components/ui/title-page"

@@ -1,4 +1,3 @@
-"use client"
 import { useUsers } from "@/hooks/user/use-users"
 import UserCard from "./user-card"
 
