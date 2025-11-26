@@ -2,12 +2,14 @@
 import { Button } from "@/components/ui/button"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { QUERY_KEYS } from "@/config/routes"
 import { create } from "@/lib/api"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import { z } from "zod"
+import { useQueryClient } from "@tanstack/react-query"
 
 const productSchema = z.object({
 	cod_product: z.string().min(4, "Código deve ter pelo menos 4 caracteres"),
@@ -45,6 +47,7 @@ const parseCurrency = (value: string): number => {
 
 export function ProductForm({ onSuccess }: ProductFormProps) {
 	const router = useRouter()
+	const queryClient = useQueryClient()
 
 	const form = useForm<ProductFormValues>({
 		resolver: zodResolver(productSchema),
@@ -59,6 +62,10 @@ export function ProductForm({ onSuccess }: ProductFormProps) {
 	const onSubmit = async (data: ProductFormValues) => {
 		try {
 			await create(data, "products")
+			// Invalida o cache dos produtos para forçar atualização
+			await queryClient.invalidateQueries({
+				queryKey: QUERY_KEYS.product.getAll,
+			})
 			toast.success("Produto criado com sucesso!")
 			form.reset()
 			onSuccess?.()
