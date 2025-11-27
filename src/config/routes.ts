@@ -33,6 +33,7 @@ export const apiRoutes = {
 		create: "/orders",
 		process: (id: string) => `/orders/${id}/process`,
 		cancel: (id: string) => `/orders/${id}/cancel`,
+		upload: "/orders/upload"
 	},
 	stock: {
 		getAll: "/stock",

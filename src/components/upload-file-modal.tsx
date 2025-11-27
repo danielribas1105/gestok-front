@@ -8,7 +8,7 @@ import { Upload } from "lucide-react"
 interface UploadFileModalProps {
 	open: boolean
 	onClose: () => void
-	onDataLoaded: (data: any[], headers: string[]) => void
+	onDataLoaded?: (data: any[], headers: string[]) => void
 }
 
 export function UploadFileModal({ open, onClose, onDataLoaded }: UploadFileModalProps) {
@@ -38,7 +38,7 @@ export function UploadFileModal({ open, onClose, onDataLoaded }: UploadFileModal
                console.log("Colunas:", results.meta.fields)
                console.log("Primeira linha:", results.data[0])
 					if (results.data.length > 0) {
-						onDataLoaded(results.data, results.meta.fields || [])
+						/* onDataLoaded(results.data, results.meta.fields || []) */
 						onClose()
 					} else setError("O arquivo CSV está vazio.")
 					setLoading(false)
@@ -57,7 +57,7 @@ export function UploadFileModal({ open, onClose, onDataLoaded }: UploadFileModal
 					const sheet = workbook.Sheets[workbook.SheetNames[0]]
 					const json = XLSX.utils.sheet_to_json(sheet, { raw: false, defval: null })
 					const headers = Object.keys(json[0] || {})
-					onDataLoaded(json, headers)
+					/* onDataLoaded(json, headers) */
 					onClose()
 				} catch (err: any) {
 					setError(`Erro ao processar Excel: ${err.message}`)
