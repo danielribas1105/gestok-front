@@ -4,52 +4,41 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input"
 import { QUERY_KEYS } from "@/config/routes"
 import { create } from "@/lib/api"
-import { User, userSchema } from "@/schemas/user"
+import { Driver, driverSchema } from "@/schemas/driver"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useQueryClient } from "@tanstack/react-query"
-import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
-import { z } from "zod"
 
-/* const userSchema = z.object({
-	name: z.string().min(3, "Nome deve ter pelo menos 3 caracteres"),
-	email: z.string().email("E-mail inválido"),
-	password: z.string().min(6, "Senha deve ter pelo menos 6 caracteres"),
-	role: z.string().optional(),
-})
-
-type UserFormValues = z.infer<typeof userSchema> */
-
-interface UserFormProps {
+interface DriverFormProps {
 	onSuccess?: () => void // ✅ callback para fechar o modal
 }
 
-export function UserForm({ onSuccess }: UserFormProps) {
-	const queryClient = useQueryClient()
+export function DriverForm({ onSuccess }: DriverFormProps) {
+   const queryClient = useQueryClient()
 
-	const form = useForm<User>({
-		resolver: zodResolver(userSchema),
+	const form = useForm<Driver>({
+		resolver: zodResolver(driverSchema),
 		defaultValues: {
+			plate_number: "",
 			name: "",
-			email: "",
-			password: "",
-			role: "",
+			car_type: "",
+			capacity: 0,
 		},
 	})
 
-	const onSubmit = async (data: User) => {
+	const onSubmit = async (data: Driver) => {
 		try {
-			await create(data, "users")
-			// Invalida o cache dos usuários para forçar atualização
-			await queryClient.invalidateQueries({
-				queryKey: QUERY_KEYS.user.getAll,
-			})
-			toast.success("Usuário criado com sucesso!")
+			await create(data, "drivers")
+         // Invalida o cache dos motoristas para forçar atualização
+         await queryClient.invalidateQueries({
+            queryKey: QUERY_KEYS.driver.getAll,
+         })
+			toast.success("Motorista criado com sucesso!")
 			form.reset() // ✅ limpa os campos
 			onSuccess?.() // ✅ fecha o modal
 		} catch (err: any) {
-			toast.error("Erro ao cadastrar usuário", {
+			toast.error("Erro ao cadastrar motorista", {
 				description: err.message || "Falha inesperada",
 			})
 		}
@@ -74,12 +63,12 @@ export function UserForm({ onSuccess }: UserFormProps) {
 
 				<FormField
 					control={form.control}
-					name="email"
+					name="plate_number"
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel>E-mail</FormLabel>
+							<FormLabel>Placa</FormLabel>
 							<FormControl>
-								<Input placeholder="exemplo@empresa.com" {...field} />
+								<Input placeholder="OKK5B97" {...field} />
 							</FormControl>
 							<FormMessage />
 						</FormItem>
@@ -88,12 +77,12 @@ export function UserForm({ onSuccess }: UserFormProps) {
 
 				<FormField
 					control={form.control}
-					name="password"
+					name="car_type"
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel>Senha</FormLabel>
+							<FormLabel>Modelo do Veículo</FormLabel>
 							<FormControl>
-								<Input type="password" placeholder="••••••••" {...field} />
+								<Input placeholder="Ex: Fiorino" {...field} />
 							</FormControl>
 							<FormMessage />
 						</FormItem>
@@ -102,12 +91,17 @@ export function UserForm({ onSuccess }: UserFormProps) {
 
 				<FormField
 					control={form.control}
-					name="role"
+					name="capacity"
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel>Função</FormLabel>
+							<FormLabel>Capacidade de carga (m3)</FormLabel>
 							<FormControl>
-								<Input placeholder="admin / user" {...field} />
+								<Input 
+									type="number" 
+									placeholder="Somente números. Ex: 150" 
+									{...field}
+									onChange={(e) => field.onChange(parseFloat(e.target.value) || 0)}
+								/>
 							</FormControl>
 							<FormMessage />
 						</FormItem>

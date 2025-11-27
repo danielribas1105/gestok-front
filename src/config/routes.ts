@@ -23,6 +23,10 @@ export const apiRoutes = {
 		getAll: "/products",
 		getByID: (params: UUID) => `/products/${params}`,
 	},
+	driver: {
+		getAll: "/drivers",
+		getByID: (params: UUID) => `/drivers/${params}`,
+	},
 	orders: {
 		getAll: "/orders",
 		getById: (id: UUID) => `/orders/${id}`,

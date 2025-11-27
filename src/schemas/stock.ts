@@ -1,6 +1,6 @@
 import z from "zod"
    
-export const StockSchema = z.object({
+export const stockSchema = z.object({
    id: z.uuid(),
    product_id: z.uuid(),
    current_quantity: z.number().positive("Valor deve ser positivo"),
@@ -9,4 +9,4 @@ export const StockSchema = z.object({
    last_update: z.string()
 })
 
-export type Stock = z.infer<typeof StockSchema>
+export type Stock = z.infer<typeof stockSchema>

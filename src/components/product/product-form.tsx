@@ -4,21 +4,11 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input"
 import { QUERY_KEYS } from "@/config/routes"
 import { create } from "@/lib/api"
+import { Product, productSchema } from "@/schemas/product"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useRouter } from "next/navigation"
+import { useQueryClient } from "@tanstack/react-query"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
-import { z } from "zod"
-import { useQueryClient } from "@tanstack/react-query"
-
-const productSchema = z.object({
-	cod_product: z.string().min(4, "Código deve ter pelo menos 4 caracteres"),
-	description: z.string().min(10, "Nome do produto deve ter pelo menos 10 caracteres"),
-	unit: z.string().min(2, "Unidade deve ter pelo menos 2 caracteres"),
-	value: z.number().positive("Valor deve ser positivo"),
-})
-
-type ProductFormValues = z.infer<typeof productSchema>
 
 interface ProductFormProps {
 	onSuccess?: () => void
@@ -46,10 +36,9 @@ const parseCurrency = (value: string): number => {
 }
 
 export function ProductForm({ onSuccess }: ProductFormProps) {
-	const router = useRouter()
 	const queryClient = useQueryClient()
 
-	const form = useForm<ProductFormValues>({
+	const form = useForm<Product>({
 		resolver: zodResolver(productSchema),
 		defaultValues: {
 			cod_product: "",
@@ -59,7 +48,7 @@ export function ProductForm({ onSuccess }: ProductFormProps) {
 		},
 	})
 
-	const onSubmit = async (data: ProductFormValues) => {
+	const onSubmit = async (data: Product) => {
 		try {
 			await create(data, "products")
 			// Invalida o cache dos produtos para forçar atualização

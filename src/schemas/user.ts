@@ -1,6 +1,6 @@
 import { z } from "zod"
 
-export const UserSchema = z.object({
+export const userSchema = z.object({
 	id: z.uuid(),
 	name: z.string().min(3, "O nome deve ter pelo menos 3 caracteres"),
 	email: z.email(),
@@ -11,4 +11,4 @@ export const UserSchema = z.object({
 })
 
 // Gerar o tipo TypeScript automaticamente
-export type User = z.infer<typeof UserSchema>
+export type User = z.infer<typeof userSchema>
