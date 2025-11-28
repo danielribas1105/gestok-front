@@ -47,7 +47,7 @@ export interface OrderItem {
 
 export interface Order {
 	id: string
-	cod_order: string
+	cod_order: number
 	client_id: string
 	user_id: string
 	order_type: "BONIFICACAO" | "DEGUSTACAO" | "VENDA"
@@ -75,7 +75,7 @@ export interface OrderCreateItem {
 }
 
 export interface OrderCreatePayload {
-	cod_order: string
+	cod_order: number
 	client_id: string
 	order_type: "BONIFICACAO" | "DEGUSTACAO" | "VENDA"
 	observations?: string
@@ -93,7 +93,7 @@ export interface OrderProcessResponse {
 export interface OrderItemRow {
 	// Dados do pedido (repetidos em cada linha)
 	order_id: string
-	cod_order: string
+	cod_order: number
 	order_type: "BONIFICACAO" | "DEGUSTACAO" | "VENDA"
 	order_type_label: string
 	order_date: string

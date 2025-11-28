@@ -6,7 +6,7 @@ import { useOrders } from "./use-orders"
 export interface PivotedOrderRow {
 	// Dados fixos do pedido
 	order_id: string
-	cod_order: string
+	cod_order: number
 	order_type: "BONIFICACAO" | "DEGUSTACAO" | "VENDA"
 	order_type_label: string
 	order_date: string
@@ -82,7 +82,7 @@ export const useOrdersPivot = (page: number = 1, pageSize: number = 20, search?:
 				// Criar novo pedido
 				ordersMap.set(row.order_id, {
 					order_id: row.order_id,
-					cod_order: row.cod_order,
+					cod_order: Number(row.cod_order),
 					order_type: row.order_type,
 					order_type_label: row.order_type_label,
 					order_date: row.order_date,
